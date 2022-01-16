@@ -7,6 +7,7 @@ function handleWS(ws,wsConnections){
     
     ws.on('message', (rawMsg)=>{
         var msg = JSON.parse(rawMsg);
+        console.log("WS:" , msg);
         if(msg.type == "CONNECTION"){
             /*
             Expected msg structure:
