@@ -51,6 +51,7 @@ async function handleConnectionMessage(ws,msg,wsConnections){
 }
 
 async function handleConnectionClose(ws,wsConnections){
+    console.log("Device disconnected");
     mac = wsConnections.getMac(ws);
     await updateDevice({mac:mac}, {status:"INACTIVE", lastDisconnected:Date.now()})
     wsConnections.closeConnectionWS(ws);
