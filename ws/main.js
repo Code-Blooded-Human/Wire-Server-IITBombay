@@ -40,6 +40,9 @@ async function handleConnectionMessage(ws,msg,wsConnections){
 
     if(devices.length == 0)
     {
+        if(!msg.ports){
+            msg.ports = [1,2];
+        }
         await createDevice(msg.mac,msg.org,msg.ports);
         console.log("Device Created");
     }
