@@ -25,7 +25,7 @@ async function renderDevices() {
   let html = '';
   let divstatus = ''
   devices.forEach(device => {
-      if(device.status == 'LIVE'){
+      if(device.status == 'ACTIVE'){
         divstatus =  `  <td>
                             <span class="badge badge-dot mr-4">
                               <i class="bg-success"></i>

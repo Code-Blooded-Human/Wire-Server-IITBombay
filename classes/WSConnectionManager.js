@@ -17,7 +17,7 @@ class WSConnectionManager{
         this.macWSMapping[mac] = undefined;
     }
     closeConnectionWS(ws){
-        mac = this.getMac(ws);
+        var mac = this.getMac(ws);
         this.closeConnectionMac(mac);
     }
 
@@ -26,7 +26,7 @@ class WSConnectionManager{
     }
 
     getMac(ws){
-        for(i in this.connectedDevicesMac){
+        for(var i in this.connectedDevicesMac){
             if(this.macWSMapping[this.connectedDevicesMac[i]] == ws){
                 return this.connectedDevicesMac[i];
             }
