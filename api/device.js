@@ -28,7 +28,7 @@ router.route("/:name").get((req,res)=>{
 
 router.route("/:name").post((req,res)=>{
     // Update details of a device with :name
-    console.log("Here");
+    console.log(req.params);
     // req.body.ports = JSON.parse(req.body.ports);
     Device.findOneAndUpdate({name: req.params.name},req.body).then(function(device){
         console.log(device);
