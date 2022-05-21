@@ -48,6 +48,8 @@ app.use('/api/statistics',statisticsRouter);
 // app.use('/api/whoami', authenticateUserMiddleware);
 // app.get('/api/whoami',whoami);
 
+//test
+
 app.ws('/', function(ws, req) {
   handleWS(ws,wsConnections,expressWs);
 });
