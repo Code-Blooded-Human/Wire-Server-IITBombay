@@ -35,9 +35,12 @@ class WSConnectionManager{
 
     sendMsg(mac,msg){
         var ws = this.getWS(mac);
-        console.log(this.macWSMapping);
+        if(ws == undefined){
+            return false;
+        }
         var serializeMsg = JSON.stringify(msg);
         ws.send(serializeMsg);
+        return true;
     }
 
 }

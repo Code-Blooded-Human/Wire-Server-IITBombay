@@ -11,7 +11,7 @@ const authenticateUserMiddleware = require('./middlewares/authenticateUserMiddle
 const Device = require('./models/device');
 
 // Database Setup 
-mongoose.connect('mongodb+srv://admin:IW0BGph6eQOZRQLP@cluster0.unq25.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://admin:QvKtRjjfewKiCDzh@cluster0.unq25.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 mongoose.Promise = global.Promise;
 
 const PORT = process.env.PORT || 3000;
@@ -32,7 +32,8 @@ app.get('/', function(req, res, next){
 });
 
 app.use((req,res,next)=>{
-  req.wsConnections = wsConnections; 
+  req.wsConnections = wsConnections;
+  
   next();
 });
 
@@ -48,11 +49,17 @@ app.use('/api/statistics',statisticsRouter);
 // app.get('/api/whoami',whoami);
 
 app.ws('/', function(ws, req) {
-  handleWS(ws,wsConnections);
+  handleWS(ws,wsConnections,expressWs);
 });
 
+
+expressWs.getWss().on('connection', function(ws) {
+  console.log('connection open');
+  console.log(expressWs.getWss().clients);
+});
 Device.updateMany({status:'ACTIVE'},{status:'INACTIVE', lastDisconnected:Date.now()}).then(()=>{
   console.log("Set all devices to inactive");
   app.listen(PORT);
   console.log("RUNNING");
+ 
 })

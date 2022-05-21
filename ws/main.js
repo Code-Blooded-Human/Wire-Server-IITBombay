@@ -3,7 +3,7 @@ const fetchDevice = require("../controllers/device/fetchDevice");
 const updateDevice = require("../controllers/device/updateDevice");
 
 
-function handleWS(ws,wsConnections){
+function handleWS(ws,wsConnections, expressWs){
     
     ws.on('message', (rawMsg)=>{
         var msg = JSON.parse(rawMsg);
@@ -31,11 +31,13 @@ function handleWS(ws,wsConnections){
     });
 
     ws.on('close',()=>{
+        console.log(expressWs.getWss().clients);
         handleConnectionClose(ws,wsConnections);
     })
 }
 
 async function handleConnectionMessage(ws,msg,wsConnections){
+    console.log("Device connected")
     wsConnections.addConnection(msg.mac,ws);
     var devices = await fetchDevice({mac:msg.mac});
 
@@ -52,6 +54,7 @@ async function handleConnectionMessage(ws,msg,wsConnections){
 
 async function handleConnectionClose(ws,wsConnections){
     console.log("Device disconnected");
+    // console.log(ws.getWss().clients);
     var mac = wsConnections.getMac(ws);
     console.log("Device disconnected " + mac);
     await updateDevice({mac:mac}, {status:"INACTIVE", lastDisconnected:Date.now()})
