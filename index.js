@@ -54,11 +54,27 @@ app.ws('/', function(ws, req) {
   handleWS(ws,wsConnections,expressWs);
 });
 
+function heartbeat(){
+  this.isAlive = true;
+}
 
 expressWs.getWss().on('connection', function(ws) {
+  ws.isAlive = true;
+  ws.on('pong', heartbeat);
+
   console.log('connection open');
   console.log(expressWs.getWss().clients);
 });
+
+const interval = setInterval(function ping() {
+  expressWs.getWss().clients.forEach(function each(ws) {
+    if (ws.isAlive === false) return ws.terminate();
+
+    ws.isAlive = false;
+    ws.ping();
+  });
+}, 30000);
+
 Device.updateMany({status:'ACTIVE'},{status:'INACTIVE', lastDisconnected:Date.now()}).then(()=>{
   console.log("Set all devices to inactive");
   app.listen(PORT);

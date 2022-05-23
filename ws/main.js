@@ -3,7 +3,11 @@ const fetchDevice = require("../controllers/device/fetchDevice");
 const updateDevice = require("../controllers/device/updateDevice");
 
 
+
+
 function handleWS(ws,wsConnections, expressWs){
+    
+    
     
     ws.on('message', (rawMsg)=>{
         var msg = JSON.parse(rawMsg);
@@ -31,6 +35,7 @@ function handleWS(ws,wsConnections, expressWs){
     });
 
     ws.on('close',()=>{
+        console.log("Connection Closed");
         console.log(expressWs.getWss().clients);
         handleConnectionClose(ws,wsConnections);
     })
