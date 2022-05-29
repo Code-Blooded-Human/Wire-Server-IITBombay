@@ -1,4 +1,5 @@
 const express = require("express");
+const log = require("log-to-file");
 const Device = require("../models/device");
 const User = require("../models/user");
 
@@ -40,6 +41,11 @@ router.route("/:name").post((req,res)=>{
 
 router.route("/:name/control/:port/:operation").post((req,res)=>{
     var {name, port, operation} = req.params;
+    var dashboard = req.query.dashboard;
+    if(!dashboard){
+        dashboard = "false";
+    }
+    
     var wsConnections = req.wsConnections;
     Device.findOne({name:name}).then(device=>{
         if(!device){
@@ -55,6 +61,7 @@ router.route("/:name/control/:port/:operation").post((req,res)=>{
                 device.ports[portIndex].status=operation;
             }
         }
+        log("Turing "+name+" port: "+port+" "+" Operation: "+operation+" dashboard = "+dashboard);
         Device.findOneAndUpdate({name:name},device).then(()=>{});
         res.send(device,200);
     });

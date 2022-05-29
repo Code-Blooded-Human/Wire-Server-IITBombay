@@ -19,6 +19,7 @@
     "crypto-js": "^4.1.1",
     "express": "^4.17.2",
     "express-ws": "^5.0.2",
+    "log-to-file": "^3.0.0",
     "mongoose": "^6.1.4"
   }
 }

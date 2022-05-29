@@ -6,6 +6,7 @@ class WSConnectionManager{
 
     addConnection(mac,ws){
         console.log(mac,ws);
+        ws.mac = mac;
         if(this.connectedDevicesMac.indexOf(mac) == -1){
             this.connectedDevicesMac.push(mac);
         }

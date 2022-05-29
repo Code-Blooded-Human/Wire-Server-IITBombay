@@ -10,6 +10,8 @@ var statisticsRouter = require('./api/statistics');
 const authenticateUserMiddleware = require('./middlewares/authenticateUserMiddleware');
 const Device = require('./models/device');
 
+const log = require('log-to-file');
+
 // Database Setup 
 mongoose.connect('mongodb+srv://admin:QvKtRjjfewKiCDzh@cluster0.unq25.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 mongoose.Promise = global.Promise;
@@ -56,6 +58,9 @@ app.ws('/', function(ws, req) {
 
 function heartbeat(){
   this.isAlive = true;
+  console.log("Recivied Heartbeat from mac: ", this.mac);
+
+  log("Server got ping msg from mac: "+this.mac);
 }
 
 expressWs.getWss().on('connection', function(ws) {
@@ -71,6 +76,9 @@ const interval = setInterval(function ping() {
     if (ws.isAlive === false) return ws.terminate();
 
     ws.isAlive = false;
+    console.log("Sending Ping to ",ws.mac);
+
+    log("Server sending ping msg to mac: "+ws.mac);
     ws.ping();
   });
 }, 30000);
@@ -79,5 +87,7 @@ Device.updateMany({status:'ACTIVE'},{status:'INACTIVE', lastDisconnected:Date.no
   console.log("Set all devices to inactive");
   app.listen(PORT);
   console.log("RUNNING");
+
+  log("Starting the server on PORT = "+PORT);
  
 })

@@ -21,16 +21,18 @@ async function getDevices() {
 
 let deviceRenderNumber = 0;
 async function renderDevices() {
-  deviceRenderNumber++;
+  
   let devices = await getDevices();
   let html = '';
   let divstatus = ''
+  
   devices.forEach(device => {
+    deviceRenderNumber++;
       if(device.status == 'ACTIVE'){
         divstatus =  `  <td>
                             <span class="badge badge-dot mr-4">
                               <i class="bg-success"></i>
-                              <span class="status">${device.status} Since: ${device.lastConnected}</span>
+                              <span class="status">POWERED Since: ${device.lastConnected}</span>
                             </span>
                           </td>`
       }
@@ -38,7 +40,7 @@ async function renderDevices() {
         divstatus =  ` <td>
                             <span class="badge badge-dot mr-4">
                               <i class="bg-warning"></i>
-                              <span class="status">${device.status} Since: ${device.lastDisconnected}</span>
+                              <span class="status">NOT POWERED Since: ${device.lastDisconnected}</span>
                             </span>
                           </td>`
       }
@@ -135,7 +137,7 @@ function showToggleButton(device,port){
 }
 
 function switchPort(name,port,control){
-  fetch(`/api/device/${name}/control/${port}/${control}`,{method:'post', headers:{'Authorization':getCookie('token')}}).then((res)=>res.json())
+  fetch(`/api/device/${name}/control/${port}/${control}/?dashboard=true`,{method:'post', headers:{'Authorization':getCookie('token')}}).then((res)=>res.json())
   .then(data=>{
     console.log(data);
   })

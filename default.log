@@ -1,0 +1,26 @@
+2022.05.29, 17:29:34.0062 UTC -> Starting the server on PORT = 3000
+2022.05.29, 17:34:50.0958 UTC -> Starting the server on PORT = 3000
+2022.05.29, 17:36:03.0115 UTC -> Starting the server on PORT = 3000
+2022.05.29, 17:38:04.0373 UTC -> New device connected mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:38:28.0932 UTC -> Server sending ping msg to mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:39:00.0022 UTC -> Starting the server on PORT = 3000
+2022.05.29, 17:39:02.0166 UTC -> New device connected mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:39:25.0488 UTC -> Server sending ping msg to mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:39:25.0541 UTC -> Server got ping msg from mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:39:52.0271 UTC -> New device connected mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:39:55.0489 UTC -> Server sending ping msg to mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:39:55.0489 UTC -> Server sending ping msg to mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:39:55.0668 UTC -> Device disconnected undefined
+2022.05.29, 17:39:55.0707 UTC -> Server got ping msg from mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:40:25.0491 UTC -> Server sending ping msg to mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:40:25.0544 UTC -> Server got ping msg from mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:40:35.0060 UTC -> Turing test port: 1  Operation: ON dashboard = false
+2022.05.29, 17:40:55.0499 UTC -> Server sending ping msg to mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:40:55.0551 UTC -> Server got ping msg from mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:41:13.0066 UTC -> Starting the server on PORT = 3000
+2022.05.29, 17:41:14.0703 UTC -> New device connected mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:41:38.0274 UTC -> Server sending ping msg to mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:41:38.0329 UTC -> Server got ping msg from mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:42:08.0286 UTC -> Server sending ping msg to mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:42:08.0339 UTC -> Server got ping msg from mac: 84:0D:8E:8F:F6:F0
+2022.05.29, 17:42:23.0784 UTC -> Turing test port: 1  Operation: ON dashboard = true
